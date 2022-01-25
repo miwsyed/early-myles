@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="">
       <header className="">
-        {/* <ContextAPIProvider> */}
-        <Albums />
-        {/* </ContextAPIProvider> */}
+        <ContextAPIProvider>
+          <Albums />
+        </ContextAPIProvider>
       </header>
     </div>
   );

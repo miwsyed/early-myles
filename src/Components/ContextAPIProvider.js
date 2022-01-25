@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const GlobalAlbums = createContext();
 const SetGlobalAlbums = createContext();
@@ -15,9 +15,9 @@ const ContextAPIProvider = ({ children }) => {
       <SetGlobalAlbums.Provider value={setAllGlobalAlbums}>
         <GlobalAlbums.Provider value={allGlobalAlbums}>
           <GlobalPhotos.Provider value={allGlobalPhotos}>
-            <SetGlobalPhotos value={setAllGlobalPhotos}>
+            <SetGlobalPhotos.Provider value={setAllGlobalPhotos}>
               {children}
-            </SetGlobalPhotos>
+            </SetGlobalPhotos.Provider>
           </GlobalPhotos.Provider>
         </GlobalAlbums.Provider>
       </SetGlobalAlbums.Provider>
@@ -26,3 +26,7 @@ const ContextAPIProvider = ({ children }) => {
 };
 
 export default ContextAPIProvider;
+export const useGlobalAlbums = () => useContext(GlobalAlbums);
+export const useSetGlobalAlbums = () => useContext(SetGlobalAlbums);
+export const useGlobalPhotos = () => useContext(GlobalPhotos);
+export const useSetGlobalPhotos = () => useContext(SetGlobalPhotos);

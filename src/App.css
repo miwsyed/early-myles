@@ -44,7 +44,7 @@
 }
 
 .card {
-  width: 16.666%;
+  width: 13%;
   padding: 0 20px;
   margin-bottom: 20px;
 }
@@ -52,6 +52,7 @@
 .card-content {
   border: 1px solid #ccc;
   border-radius: 8px;
+  min-height: 22em !important;
 }
 
 .text-content {

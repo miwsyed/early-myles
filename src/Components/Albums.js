@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
+import {
+  useSetGlobalAlbums,
+  useGlobalAlbums,
+  useGlobalPhotos,
+  useSetGlobalPhotos,
+} from "./ContextAPIProvider";
 import { getAlbumsAPi, getAlbumPhotos } from "./GetApi";
 
 const Albums = () => {
-  /* to store all the albums*/
-  const [albums, setAlbums] = useState([]);
-  /*to store all the photos */
-  const [photos, setPhotos] = useState([]);
+  /* Using context API to store the albums so we can access it from anywhere*/
+  const setAlbums = useSetGlobalAlbums();
+  const albums = useGlobalAlbums();
+
+  /* Using context API to store the Photos so we can access it from anywhere*/
+  const photos = useGlobalPhotos();
+  const setPhotos = useSetGlobalPhotos();
+
   /*to store the selected album id */
   const [selectedAlbum, setSelectedAlbum] = useState("");
 
@@ -20,7 +30,7 @@ const Albums = () => {
       }
     };
     getDAta();
-  }, []);
+  }, [setAlbums]);
 
   useEffect(() => {
     /* function to get the photos related to the current selected album */
@@ -37,7 +47,7 @@ const Albums = () => {
       setPhotos(response.data);
     };
     getPhotos();
-  }, [selectedAlbum]);
+  }, [setPhotos, selectedAlbum]);
 
   /*Function to set the album id */
   const selectHandler = (event) => {
