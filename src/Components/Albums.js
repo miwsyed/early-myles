@@ -2,52 +2,46 @@ import React, { useEffect, useState } from "react";
 import { getAlbumsAPi, getAlbumPhotos } from "./GetApi";
 
 const Albums = () => {
+  /* to store all the albums*/
   const [albums, setAlbums] = useState([]);
+  /*to store all the photos */
   const [photos, setPhotos] = useState([]);
-
+  /*to store the selected album id */
   const [selectedAlbum, setSelectedAlbum] = useState("");
 
-  //function to match album ids to photo id's
-  const showPhotos = () => {};
-
   useEffect(() => {
-    console.log("asdf");
+    /*function to get all the Album details */
     const getDAta = async () => {
       try {
         const responseAlbums = await getAlbumsAPi();
         setAlbums(responseAlbums.data);
-
-        // console.log(responsePhotos.data);
-        // console.log(responseAlbums.data);
       } catch (err) {
         console.log(err);
       }
     };
-
     getDAta();
-    //getting the all the albums from the API
-    // (async () => {
-
-    // })();
   }, []);
 
   useEffect(() => {
+    /* function to get the photos related to the current selected album */
     const getPhotos = async () => {
+      // if we select select album from the drop down we get empty the photos array.
       if (selectedAlbum === "none") {
         setPhotos([]);
       }
+      //if album is not selected return
       if (selectedAlbum === null) return;
+      // passing the selected album id to photos url.
       const url = `https://jsonplaceholder.typicode.com/photos?albumId=${selectedAlbum}`;
       const response = await getAlbumPhotos(url);
-
       setPhotos(response.data);
     };
     getPhotos();
   }, [selectedAlbum]);
 
+  /*Function to set the album id */
   const selectHandler = (event) => {
     const value = event.target.value;
-
     setSelectedAlbum(value);
   };
 
