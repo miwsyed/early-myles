@@ -4,7 +4,6 @@ import axios from "axios";
 export async function getAlbumsAPi() {
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/albums");
-    console.log(res);
     return res;
   } catch (err) {
     console.log(err);
