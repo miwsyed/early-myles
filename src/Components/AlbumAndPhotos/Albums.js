@@ -138,8 +138,8 @@ const Albums = () => {
           width : 150% !important;
           font-size : 1.1rem;
         }
-        .img.loading {
-          background: transparent url('src/Components/AlbumAndPhotos/helpers/spinning-loading.gif') no-repeat scroll center center;
+        img.loading {
+          background: transparent url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif') no-repeat scroll center center;
       }
 
         
