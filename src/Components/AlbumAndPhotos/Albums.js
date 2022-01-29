@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useGlobalAlbums, useGlobalPhotos } from "./context/ContextAPIProvider";
 
 import { StoreData } from "./StoreData";
-
+import spinnerImg from "./helpers/spinning-loading.gif";
 const Albums = () => {
   /*to store the selected album id */
   const [selectedAlbum, setSelectedAlbum] = useState("");
@@ -69,7 +69,7 @@ const Albums = () => {
                   <div className="image-holder">
                     {image ? (
                       <img
-                        src={image.url}
+                        src={image.url ? image.url : spinnerImg}
                         alt={image.title}
                         className="loading"
                       />
@@ -138,9 +138,7 @@ const Albums = () => {
           width : 150% !important;
           font-size : 1.1rem;
         }
-        img.loading {
-          background: transparent url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif') no-repeat scroll center center;
-      }
+     
 
         
         `}
