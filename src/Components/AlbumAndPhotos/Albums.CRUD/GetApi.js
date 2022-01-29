@@ -10,6 +10,15 @@ export async function getAlbumsAPi() {
   }
 }
 
+export async function getPhotosAPI() {
+  try {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/photos");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 //function to get the photos of the particular album selected
 export async function getAlbumPhotos(url) {
   try {
